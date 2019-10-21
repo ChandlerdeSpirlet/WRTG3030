@@ -1,0 +1,6 @@
+---
+- name: "TEST C1: Create a folder if it does not exist."
+  hosts: all
+  tasks:
+    - folder_func:
+        directory: '/Users/chandlerdespirlet/Desktop/CUSTOM_folder'

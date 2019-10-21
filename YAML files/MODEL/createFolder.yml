@@ -1,0 +1,8 @@
+---
+- name: "TEST M1: Create a folder if it does not exist."
+  hosts: all
+  tasks:
+    - name: 'Create a folder if it does not exist'
+      file:
+        path: '/Users/chandlerdespirlet/Desktop/MODEL_folder'
+        state: directory
