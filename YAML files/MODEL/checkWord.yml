@@ -1,0 +1,34 @@
+---
+- name: "TEST M3: Open a text file and search for a word. Write to a file the status of the word."
+  hosts: all
+  tasks:
+    - name: "Search for the word."
+      lineinfile:
+        path: "/Users/chandlerdespirlet/TestEnv/WRTG3030/sample_text.txt"
+        line: 'SEARCH_TEXT'
+        state: present
+      check_mode: yes
+      register: isHere
+
+    - name: "Create output file."
+      file:
+        path: "/Users/chandlerdespirlet/Desktop/MODEL_status.txt"
+        state: touch
+        mode: '0666'
+
+    - name: "Write to the file if it is present."
+      lineinfile:
+        path: "/Users/chandlerdespirlet/Desktop/MODEL_status.txt"
+        insertafter: ''
+        line: "The search word IS in the file."
+      when: isHere.changed
+
+    - name: "Write to the file if it is not present."
+      lineinfile:
+        path: "/Users/chandlerdespirlet/Desktop/MODEL_status.txt"
+        insertafter: ''
+        line: "The search word IS NOT in the file."
+      when: not isHere.changed
+
+    - debug:
+        msg: "The word is present boolean: {{isHere.changed}}"

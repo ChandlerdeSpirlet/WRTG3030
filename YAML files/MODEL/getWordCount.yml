@@ -1,0 +1,11 @@
+---
+- name: "TEST M2: Open a text file and count the number of words."
+  hosts: all
+  tasks: 
+    - name: "Count all of the words in the document"
+      shell: |
+        grep -o "the" /Users/chandlerdespirlet/TestEnv/WRTG3030/sample_text.txt | wc -l
+      register: ActualCount
+
+    - debug: 
+        msg: "Actual count is: {{ActualCount.stdout}}"

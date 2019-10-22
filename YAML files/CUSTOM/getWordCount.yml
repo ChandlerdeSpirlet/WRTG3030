@@ -1,0 +1,12 @@
+---
+- name: "TEST C2: Open a text file and count the number of words."
+  hosts: all
+  tasks:
+    - name: "Count all of the words in the document"
+      word_count:
+        FilePath: "/Users/chandlerdespirlet/TestEnv/WRTG3030/sample_text.txt"
+        SearchWord: "the"
+      register: ActualCount
+
+    - debug:
+        msg: "Actual count is: {{ActualCount.meta.count}}"

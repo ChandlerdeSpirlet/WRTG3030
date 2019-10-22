@@ -1,0 +1,12 @@
+---
+- name: "TEST C3: Open a text file and search for a word. Write to a file the status of the word."
+  hosts: all
+  tasks:
+    - name: "Search for the word and write the file."
+      word_check:
+        FilePath: "/Users/chandlerdespirlet/TestEnv/WRTG3030/sample_text.txt"
+        SearchWord: "SEARCH_TEXT"
+      register: isHere
+
+    - debug:
+        msg: "The word is present boolean: {{isHere.meta.isPresent}}"
