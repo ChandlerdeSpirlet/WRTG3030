@@ -27,6 +27,7 @@ def run_module():
             if wordToFind in word:
                 present += 1
                 break
+    searchfile.close()
     writeToFile(present)
     module.params.update({"isPresent": present})
     module.exit_json(changed=True, meta=module.parms)
