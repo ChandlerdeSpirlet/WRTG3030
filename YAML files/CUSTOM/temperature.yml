@@ -1,0 +1,23 @@
+---
+- name: "TEST C4: Execute a python script and then process the data from the output file."
+  hosts: all
+  tasks:
+    - name: "Process data"
+      temperature:
+        script: "/Users/chandlerdespirlet/Desktop/Specs.txt"
+      register: values
+
+    - debug: 
+        msg: "Average Temperature is: {{values.meta.avg_temp}}"
+    - debug: 
+        msg: "Average Humidity is: {{values.meta.avg_humidity}}"
+    - debug: 
+        msg: "Time Elapsed is: {{values.meta.time_elapsed}}"
+    - debug: 
+        msg: "Maximum Temperature is: {{values.meta.max_temp}}"
+    - debug: 
+        msg: "Minimum Temperature is: {{values.meta.min_temp}}"
+    - debug: 
+        msg: "Maximum Humidity is: {{values.meta.max_humidity}}"
+    - debug: 
+        msg: "Minimum Humidity is: {{values.meta.min_humidity}}"
