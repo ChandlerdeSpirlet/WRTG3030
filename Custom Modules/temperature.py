@@ -3,6 +3,12 @@ import sys
 import json
 from ansible.module_utils.basic import AnsibleModule
 
+def write_To_File(data):
+    file = open("/Users/chandlerdespirlet/Desktop/TemperatureStatus.txt", "w+")
+    for item in data:
+        file.write(item + '\n')
+    file.close()
+
 def process_file(path):
     system("python /Users/chandlerdespirlet/Desktop/Temperature_Analysis.py -i 2")
     values = []
@@ -25,6 +31,7 @@ def process_file(path):
             values.append(str(line[14:len(line)]) + "%")
         counter += 1
     file.close()
+    write_To_File(values)
     return values
 
 def run_module():
