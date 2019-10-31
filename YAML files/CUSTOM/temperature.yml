@@ -1,6 +1,7 @@
 ---
 - name: "TEST C4: Execute a python script and then process the data from the output file."
   hosts: all
+  gather_facts: no
   tasks:
     - name: "Process data"
       temperature:

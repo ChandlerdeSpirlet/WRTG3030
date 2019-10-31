@@ -1,0 +1,32 @@
+---
+- name: "TEST M4: Execute a python script and then process the data from the output file."
+  hosts: all
+  vars: 
+    values: []
+  tasks:
+    - name: Check for Python script
+      stat:
+        path: "/Users/chandlerdespirlet/Desktop/Temperature_Analysis.py"
+      register: py_script
+      failed_when: py_script.stat.exists == false
+
+    - name: Run Python script
+      shell: |
+        python /Users/chandlerdespirlet/Desktop/Temperature_Analysis.py -i 2
+      
+    - name: Check for output file
+      stat:
+        path: "/Users/chandlerdespirlet/Desktop/Specs.txt"
+      register: specs
+      failed_when: specs.stat.exists == false
+
+    - name: Read input file
+      set_fact:
+        values: "{{values + [item]}}"
+      with_lines: "cat /Users/chandlerdespirlet/Desktop/Specs.txt"
+
+    - name: Output results from file
+      debug: 
+        msg: "{{ item }}"
+      with_items:
+        - "{{ values }}"
