@@ -1,0 +1,11 @@
+---
+- name: "TEST C5: Execute other .yml scripts, analyze output by running an analysis script, then report the status."
+  hosts: all
+  tasks:
+    - name: "Capture and process results"
+      function_check:
+        outFile: "/Users/chandlerdespirlet/Desktop/CUSTOM_OUT.txt"
+      register: status
+
+    - debug:
+        msg: "{{status.meta.output}}"

@@ -10,25 +10,25 @@ def write_To_File(data):
     file.close()
 
 def process_file(path):
-    system("python /Users/chandlerdespirlet/Desktop/Temperature_Analysis.py -i 2")
+    system("python /Users/chandlerdespirlet/Desktop/Temperature_Analysis.py")
     values = []
     file = open(path, "r")
     counter = 0
     for line in file:
         if (counter == 0):
-            values.append(str(line[21:len(line) - 1]) + "F")
+            values.append(str(line[21:len(line) - 1]) + " F")
         if (counter == 1):
-            values.append(str(line[21:len(line) - 1]) + "%")
+            values.append(str(line[18:len(line) - 1]) + " %")
         if (counter == 2):
-            values.append(str(line[15:20]) + " " + str(line[23:24]) + " hours" + " " + str(line[25:27]) + " minutes")
+            values.append(str(line[14:21]) + str(line[22:25]) + " hours" + " " + str(line[26:28]) + " minutes")
         if (counter == 3):
-            values.append(str(line[17:len(line) - 1]) + "F")
+            values.append(str(line[17:len(line) - 1]) + " F")
         if (counter == 4):
-            values.append(str(line[17:len(line) - 1]) + "F")
+            values.append(str(line[17:len(line) - 1]) + " F")
         if (counter == 5):
-            values.append(str(line[14:len(line) - 1]) + "%")
+            values.append(str(line[14:len(line) - 1]) + " %")
         if (counter == 6):
-            values.append(str(line[14:len(line)]) + "%")
+            values.append(str(line[14:len(line)]) + " %")
         counter += 1
     file.close()
     write_To_File(values)

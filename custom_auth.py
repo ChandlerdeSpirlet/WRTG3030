@@ -1,5 +1,5 @@
 import sys
-from re import match
+import re
 
 def analyzeInput(filepath):
     lines = []
@@ -8,23 +8,16 @@ def analyzeInput(filepath):
         lines.append(line)
     file.close()
     matchValues = []
-    regexValues = ['', '', '', '', '', '', '', '', '']
-    #line1re = ''
-    #line2re = ''
-    #line3re = ''
-    #line4re = ''
-    #line5re = ''
-    #line6re = ''
-    #line7re = ''
-    #line8re = ''
-    #line9re = ''
+    regexValues = [r'The desired string IS present in the file[.]', r'[A-z\s]{26}[:][A-x\s]{9}[0-9]{1,}', r'[0-9]{2}.[0-9]{10}[ ][F]', r'[0-9]{2}[ ][%]', r'[0-9]{2,} days [0-9]{1,} hours [0-9]{1,} minutes', r'[0-9]{2}[.][0-9] F', r'[0-9]{2}[.][0-9] F', r'[0-9]{2}[ ][%]', r'[0-9]{2}[ ][%]']
     idx = 0
     for x in regexValues:
-        matchValues.append(bool(match(r x, lines[idx])))
+        matchVal = re.match(x, lines[idx])
+        matchValues.append(matchVal)
         idx += 1
     return matchValues
 
-def runValidation(results):
+def runValidation():
+    results = analyzeInput("/Users/chandlerdespirlet/Desktop/CUSTOM_OUT.txt")
     failedValues = []
     idx = 0
     for x in results:
@@ -32,6 +25,15 @@ def runValidation(results):
             failedValues.append("Failed on Case: " + str(idx + 1))
             idx += 1
     return failedValues
-    
-def run(values):
-    
+
+def run():
+    results = runValidation()
+    outFile = open("/Users/chandlerdespirlet/Desktop/custom_sample_data.txt", "w+")
+    outFile.write(results)
+    outFile.close()
+
+def main():
+    run()
+
+if __name__ == '__main__':
+    main()

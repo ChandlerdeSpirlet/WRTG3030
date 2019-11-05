@@ -4,7 +4,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 def writeToFile(count, word):
     outputFile = open("/Users/chandlerdespirlet/Desktop/count_output.txt", "w+")
-    outputFile.write("Word count for search word: " + word + " is " + count)
+    outputFile.write("Word count for search word: " + word + " is " + str(count))
     outputFile.close()
 
 def run_module():

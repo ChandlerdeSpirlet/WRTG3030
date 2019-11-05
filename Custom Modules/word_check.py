@@ -30,7 +30,7 @@ def run_module():
     searchfile.close()
     writeToFile(present)
     module.params.update({"isPresent": present})
-    module.exit_json(changed=True, meta=module.parms)
+    module.exit_json(changed=True, meta=module.params)
 
 def main():
     run_module()
