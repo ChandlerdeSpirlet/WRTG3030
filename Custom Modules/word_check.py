@@ -16,7 +16,6 @@ def run_module():
         "SearchWord": {"type": "str", "required": "yes"},
         "isPresent": {"type": "int", "default": 0}
     }
-    #Word that is present is 'SEARCH_TEXT'
     module = AnsibleModule(argument_spec=fields)
     path = module.params["FilePath"]
     wordToFind = module.params["SearchWord"]
